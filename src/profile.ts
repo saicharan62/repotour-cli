@@ -17,6 +17,12 @@ export function createEmptyProfile(context: RepoContext): RepoProfile {
     importantFiles: [],
     repoZones: [],
     readingPath: [],
+    architectureGraph: { nodes: [], edges: [] },
+    executionFlows: [],
+    zoneRelationships: [],
+    packageMap: [],
+    timelineSignals: [],
+    ignoreGuidance: [],
     warnings: [],
   };
 }
