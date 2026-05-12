@@ -15,6 +15,9 @@ It answers the practical first-pass questions:
 ```bash
 repotour .
 repotour ./repo --html --output report.html
+repotour ./repo --interactive --output map.html
+repotour ./repo --graph --focus runtime --ignore-low-signal
+repotour ./repo --flow
 repotour ./repo --markdown --output repotour.md
 ```
 
@@ -48,3 +51,5 @@ npm run build
 - Git churn hotspots from the last three months
 - README section extraction
 - Markdown and standalone HTML renderers
+- Interactive architecture graph and execution-flow explorer
+- Repo zone relationships, package map, timeline signals, and ignore-first guidance
