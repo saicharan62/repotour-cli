@@ -8,12 +8,15 @@
   },
   "files": [
     "dist",
+    "frontend",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "build": "tsup src/cli.ts --format esm --dts --clean",
+    "build:frontend": "npm --prefix frontend run build",
     "dev": "tsx src/cli.ts",
+    "frontend:dev": "npm --prefix frontend run dev",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
