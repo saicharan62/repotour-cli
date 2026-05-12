@@ -1,0 +1,669 @@
+{
+  "nodes": [
+    {
+      "id": "src_cli_ts",
+      "label": "src/cli.ts",
+      "kind": "entrypoint",
+      "path": "src/cli.ts",
+      "importance": 100,
+      "role": "Target of package.json dev script",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "entrypoint score",
+          "weight": 80
+        },
+        {
+          "label": "imports 8 sampled dependencies",
+          "weight": 20
+        },
+        {
+          "label": "root proximity",
+          "weight": 12
+        }
+      ]
+    },
+    {
+      "id": "src_",
+      "label": "src",
+      "kind": "zone",
+      "path": "src/",
+      "importance": 93,
+      "role": "Likely core runtime or application logic. Evidence is based on path 'src/'.",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "imports out of zone sample: 89",
+          "weight": 18
+        },
+        {
+          "label": "imported by sampled files: 82",
+          "weight": 18
+        },
+        {
+          "label": "runtime/core naming convention",
+          "weight": 18
+        },
+        {
+          "label": "recent churn activity",
+          "weight": 16
+        },
+        {
+          "label": "30 files",
+          "weight": 14.913616938342727
+        },
+        {
+          "label": "runtime path",
+          "weight": 8
+        }
+      ]
+    },
+    {
+      "id": "src_analyzers_index_ts",
+      "label": "src/analyzers/index.ts",
+      "kind": "module",
+      "path": "src/analyzers/index.ts",
+      "importance": 58,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "imports 18 sampled dependencies",
+          "weight": 20
+        },
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imported by 2 sampled files",
+          "weight": 8
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        },
+        {
+          "label": "recent churn: 1 commits",
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "src_types_ts",
+      "label": "src/types.ts",
+      "kind": "module",
+      "path": "src/types.ts",
+      "importance": 54,
+      "role": "Active architectural hotspot",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "imported by 28 sampled files",
+          "weight": 20
+        },
+        {
+          "label": "high recent git churn",
+          "weight": 17.658770825039465
+        },
+        {
+          "label": "root proximity",
+          "weight": 12
+        },
+        {
+          "label": "recent churn: 1 commits",
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "src_profile_ts",
+      "label": "src/profile.ts",
+      "kind": "module",
+      "path": "src/profile.ts",
+      "importance": 52,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imported by 4 sampled files",
+          "weight": 16
+        },
+        {
+          "label": "root proximity",
+          "weight": 12
+        },
+        {
+          "label": "imports 2 sampled dependencies",
+          "weight": 6
+        }
+      ]
+    },
+    {
+      "id": "src_analyzers_zones_ts",
+      "label": "src/analyzers/zones.ts",
+      "kind": "module",
+      "path": "src/analyzers/zones.ts",
+      "importance": 50,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imports 4 sampled dependencies",
+          "weight": 12
+        },
+        {
+          "label": "imported by 2 sampled files",
+          "weight": 8
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        },
+        {
+          "label": "recent churn: 1 commits",
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "src_analyzers_entrypoints_ts",
+      "label": "src/analyzers/entrypoints.ts",
+      "kind": "module",
+      "path": "src/analyzers/entrypoints.ts",
+      "importance": 49,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imports 5 sampled dependencies",
+          "weight": 15
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        },
+        {
+          "label": "imported by 1 sampled files",
+          "weight": 4
+        },
+        {
+          "label": "recent churn: 1 commits",
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "src_utils_signals_ts",
+      "label": "src/utils/signals.ts",
+      "kind": "module",
+      "path": "src/utils/signals.ts",
+      "importance": 49,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "imported by 9 sampled files",
+          "weight": 20
+        },
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        },
+        {
+          "label": "imports 1 sampled dependencies",
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "id": "src_walker_fs_ts",
+      "label": "src/walker/fs.ts",
+      "kind": "module",
+      "path": "src/walker/fs.ts",
+      "importance": 48,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imports 6 sampled dependencies",
+          "weight": 18
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        },
+        {
+          "label": "recent churn: 1 commits",
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "src_analyzers_entrypoint-scoring_ts",
+      "label": "src/analyzers/entrypoint-scoring.ts",
+      "kind": "module",
+      "path": "src/analyzers/entrypoint-scoring.ts",
+      "importance": 46,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imports 4 sampled dependencies",
+          "weight": 12
+        },
+        {
+          "label": "imported by 2 sampled files",
+          "weight": 8
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        }
+      ]
+    },
+    {
+      "id": "src_analyzers_language_ts",
+      "label": "src/analyzers/language.ts",
+      "kind": "module",
+      "path": "src/analyzers/language.ts",
+      "importance": 43,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imports 3 sampled dependencies",
+          "weight": 9
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        },
+        {
+          "label": "imported by 1 sampled files",
+          "weight": 4
+        },
+        {
+          "label": "recent churn: 1 commits",
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "src_analyzers_imports_ts",
+      "label": "src/analyzers/imports.ts",
+      "kind": "module",
+      "path": "src/analyzers/imports.ts",
+      "importance": 43,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imports 3 sampled dependencies",
+          "weight": 9
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        },
+        {
+          "label": "imported by 1 sampled files",
+          "weight": 4
+        },
+        {
+          "label": "recent churn: 1 commits",
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "id": "src_analyzers_architecture-graph_ts",
+      "label": "src/analyzers/architecture-graph.ts",
+      "kind": "module",
+      "path": "src/analyzers/architecture-graph.ts",
+      "importance": 43,
+      "role": "Participates in sampled import graph",
+      "lowSignal": false,
+      "signals": [
+        {
+          "label": "sampled source module",
+          "weight": 18
+        },
+        {
+          "label": "imports 3 sampled dependencies",
+          "weight": 9
+        },
+        {
+          "label": "imported by 2 sampled files",
+          "weight": 8
+        },
+        {
+          "label": "root proximity",
+          "weight": 8
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "src_->src_cli_ts:entry",
+      "from": "src_",
+      "to": "src_cli_ts",
+      "kind": "entrypoint",
+      "weight": 4,
+      "label": "entrypoint in zone"
+    },
+    {
+      "id": "src_->src_cli_ts:contains",
+      "from": "src_",
+      "to": "src_cli_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_analyzers_index_ts:contains",
+      "from": "src_",
+      "to": "src_analyzers_index_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_types_ts:contains",
+      "from": "src_",
+      "to": "src_types_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_profile_ts:contains",
+      "from": "src_",
+      "to": "src_profile_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_analyzers_zones_ts:contains",
+      "from": "src_",
+      "to": "src_analyzers_zones_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_analyzers_entrypoints_ts:contains",
+      "from": "src_",
+      "to": "src_analyzers_entrypoints_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_utils_signals_ts:contains",
+      "from": "src_",
+      "to": "src_utils_signals_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_walker_fs_ts:contains",
+      "from": "src_",
+      "to": "src_walker_fs_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_analyzers_entrypoint-scoring_ts:contains",
+      "from": "src_",
+      "to": "src_analyzers_entrypoint-scoring_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_analyzers_language_ts:contains",
+      "from": "src_",
+      "to": "src_analyzers_language_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_analyzers_imports_ts:contains",
+      "from": "src_",
+      "to": "src_analyzers_imports_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_->src_analyzers_architecture-graph_ts:contains",
+      "from": "src_",
+      "to": "src_analyzers_architecture-graph_ts",
+      "kind": "contains",
+      "weight": 2,
+      "label": "contains important file"
+    },
+    {
+      "id": "src_cli_ts->src_analyzers_index_ts:import",
+      "from": "src_cli_ts",
+      "to": "src_analyzers_index_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_cli_ts->src_profile_ts:import",
+      "from": "src_cli_ts",
+      "to": "src_profile_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_cli_ts->src_types_ts:import",
+      "from": "src_cli_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_architecture-graph_ts->src_types_ts:import",
+      "from": "src_analyzers_architecture-graph_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_architecture-graph_ts->src_utils_signals_ts:import",
+      "from": "src_analyzers_architecture-graph_ts",
+      "to": "src_utils_signals_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_entrypoint-scoring_ts->src_types_ts:import",
+      "from": "src_analyzers_entrypoint-scoring_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_entrypoint-scoring_ts->src_utils_signals_ts:import",
+      "from": "src_analyzers_entrypoint-scoring_ts",
+      "to": "src_utils_signals_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_entrypoints_ts->src_types_ts:import",
+      "from": "src_analyzers_entrypoints_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_entrypoints_ts->src_utils_signals_ts:import",
+      "from": "src_analyzers_entrypoints_ts",
+      "to": "src_utils_signals_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_imports_ts->src_types_ts:import",
+      "from": "src_analyzers_imports_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_index_ts->src_types_ts:import",
+      "from": "src_analyzers_index_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_index_ts->src_analyzers_architecture-graph_ts:import",
+      "from": "src_analyzers_index_ts",
+      "to": "src_analyzers_architecture-graph_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_index_ts->src_analyzers_entrypoints_ts:import",
+      "from": "src_analyzers_index_ts",
+      "to": "src_analyzers_entrypoints_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_index_ts->src_analyzers_entrypoint-scoring_ts:import",
+      "from": "src_analyzers_index_ts",
+      "to": "src_analyzers_entrypoint-scoring_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_index_ts->src_analyzers_imports_ts:import",
+      "from": "src_analyzers_index_ts",
+      "to": "src_analyzers_imports_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_index_ts->src_analyzers_language_ts:import",
+      "from": "src_analyzers_index_ts",
+      "to": "src_analyzers_language_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_index_ts->src_analyzers_zones_ts:import",
+      "from": "src_analyzers_index_ts",
+      "to": "src_analyzers_zones_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_language_ts->src_types_ts:import",
+      "from": "src_analyzers_language_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_zones_ts->src_types_ts:import",
+      "from": "src_analyzers_zones_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_analyzers_zones_ts->src_utils_signals_ts:import",
+      "from": "src_analyzers_zones_ts",
+      "to": "src_utils_signals_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_profile_ts->src_types_ts:import",
+      "from": "src_profile_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_utils_signals_ts->src_types_ts:import",
+      "from": "src_utils_signals_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    },
+    {
+      "id": "src_walker_fs_ts->src_types_ts:import",
+      "from": "src_walker_fs_ts",
+      "to": "src_types_ts",
+      "kind": "imports",
+      "weight": 1,
+      "label": "imports"
+    }
+  ]
+}
