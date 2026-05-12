@@ -3,9 +3,36 @@ import { InspectorPanel } from "../panels/InspectorPanel";
 import { Sidebar } from "../panels/Sidebar";
 import { TourOverlay } from "../tour/TourOverlay";
 import { useExplorerStore } from "../state/explorerStore";
+import { useEffect } from "react";
 
 export function AppLayout() {
   const profile = useExplorerStore((state) => state.profile);
+  const setMode = useExplorerStore((state) => state.setMode);
+  const startTour = useExplorerStore((state) => state.startTour);
+  const setTraversalPlaying = useExplorerStore((state) => state.setTraversalPlaying);
+  const traversalPlaying = useExplorerStore((state) => state.traversalPlaying);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.target instanceof HTMLInputElement) return;
+      if (event.key === "1") setMode("runtime");
+      if (event.key === "2") setMode("package");
+      if (event.key === "3") setMode("learning");
+      if (event.key === "4") setMode("hotspot");
+      if (event.key.toLowerCase() === "t") startTour();
+      if (event.key === " ") {
+        event.preventDefault();
+        setTraversalPlaying(!traversalPlaying);
+      }
+      if (event.key === "/") {
+        event.preventDefault();
+        document.querySelector<HTMLInputElement>('input[placeholder^="Search"]')?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [setMode, setTraversalPlaying, startTour, traversalPlaying]);
+
   if (!profile) return null;
 
   return (
