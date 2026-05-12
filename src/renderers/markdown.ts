@@ -26,6 +26,14 @@ export function renderMarkdown(profile: RepoProfile): string {
     "",
     renderZones(profile),
     "",
+    "## Execution Flow",
+    "",
+    renderExecutionFlows(profile),
+    "",
+    "## Zone Relationships",
+    "",
+    renderZoneRelationships(profile),
+    "",
     "## Important Files",
     "",
     renderImportantFiles(profile),
@@ -45,6 +53,18 @@ export function renderMarkdown(profile: RepoProfile): string {
     "## Churn Hotspots",
     "",
     renderChurn(profile),
+    "",
+    "## Active Development Signals",
+    "",
+    renderTimeline(profile),
+    "",
+    "## Low Priority For First Pass",
+    "",
+    renderIgnoreGuidance(profile),
+    "",
+    "## Package Map",
+    "",
+    renderPackageMap(profile),
     "",
     "## Shallow Import Graph",
     "",
@@ -80,6 +100,38 @@ function renderZones(profile: RepoProfile): string {
   return profile.repoZones
     .map((zone) => `- \`${zone.path}\` (${zone.kind}, ${zone.importance}%)\n  ${zone.summary}`)
     .join("\n");
+}
+
+function renderExecutionFlows(profile: RepoProfile): string {
+  if (!profile.executionFlows.length) return "_No execution flow could be traced from sampled imports._";
+  return profile.executionFlows
+    .slice(0, 3)
+    .map((flow) => [
+      `### \`${flow.entrypoint}\` (${flow.score}%, ${flow.confidence})`,
+      "",
+      ...flow.steps.map((step) => `${"  ".repeat(step.depth)}- \`${step.path}\` - ${step.reason}`),
+    ].join("\n"))
+    .join("\n\n");
+}
+
+function renderZoneRelationships(profile: RepoProfile): string {
+  if (!profile.zoneRelationships.length) return "_No cross-zone relationships detected in sampled imports._";
+  return profile.zoneRelationships.map((relationship) => `- \`${relationship.from}\` -> \`${relationship.to}\` (${relationship.kind}, ${relationship.weight} links)`).join("\n");
+}
+
+function renderTimeline(profile: RepoProfile): string {
+  if (!profile.timelineSignals.length) return "_No recent git activity clusters detected._";
+  return profile.timelineSignals.map((item) => `- \`${item.path}\` - ${item.kind}: ${item.summary}`).join("\n");
+}
+
+function renderIgnoreGuidance(profile: RepoProfile): string {
+  if (!profile.ignoreGuidance.length) return "_No obvious low-priority areas detected._";
+  return profile.ignoreGuidance.map((item) => `- \`${item.path}\` (${item.confidence}) - ${item.reason}`).join("\n");
+}
+
+function renderPackageMap(profile: RepoProfile): string {
+  if (!profile.packageMap.length) return "_No package boundaries detected._";
+  return profile.packageMap.slice(0, 16).map((pkg) => `- \`${pkg.path}\` - ${pkg.name} (${pkg.centrality}%)${pkg.internalDependencies.length ? `; internal deps: ${pkg.internalDependencies.join(", ")}` : ""}`).join("\n");
 }
 
 function renderManifests(profile: RepoProfile): string {
