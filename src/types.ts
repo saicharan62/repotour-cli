@@ -260,6 +260,7 @@ export type ProfileWarning = {
 export type CliOptions = {
   html?: boolean;
   markdown?: boolean;
+  json?: boolean;
   interactive?: boolean;
   graph?: boolean;
   flow?: boolean;
