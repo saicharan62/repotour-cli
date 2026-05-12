@@ -1,4 +1,4 @@
-import type { FocusMode, UiMode } from "../types/profile";
+import type { FocusMode, OverlayMode, UiMode } from "../types/profile";
 import { useExplorerStore } from "../state/explorerStore";
 
 const modes: Array<{ mode: UiMode; title: string; copy: string; key: string }> = [
@@ -9,9 +9,15 @@ const modes: Array<{ mode: UiMode; title: string; copy: string; key: string }> =
 ];
 
 const focuses: FocusMode[] = ["all", "runtime", "entrypoint", "low"];
+const overlays: Array<{ value: OverlayMode; label: string }> = [
+  { value: "importance", label: "Importance" },
+  { value: "churn", label: "Churn" },
+  { value: "centrality", label: "Gravity" },
+  { value: "onboarding", label: "Onboarding" },
+];
 
 export function Sidebar() {
-  const { profile, mode, focus, query, setMode, setFocus, setQuery } = useExplorerStore();
+  const { profile, mode, focus, overlay, query, setMode, setFocus, setOverlay, setQuery } = useExplorerStore();
   if (!profile) return null;
 
   return (
@@ -57,14 +63,41 @@ export function Sidebar() {
       </section>
 
       <section className="rounded-panel border border-line bg-white p-3">
-        <h2 className="mb-3 text-sm font-bold">Zones</h2>
+        <h2 className="mb-3 text-sm font-bold">Visual Overlay</h2>
+        <div className="grid grid-cols-2 gap-2">
+          {overlays.map((item) => (
+            <button
+              key={item.value}
+              className={`rounded-panel border px-2 py-2 text-sm ${overlay === item.value ? "border-accent bg-[#e5f3f1]" : "border-line"}`}
+              onClick={() => setOverlay(item.value)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-panel border border-line bg-white p-3">
+        <h2 className="mb-3 text-sm font-bold">Architecture Regions</h2>
         <div className="grid gap-2">
           {profile.repoZones.slice(0, 10).map((zone) => (
             <div key={zone.path} className="architecture-card">
               <div className="font-bold">{zone.label}</div>
-              <div className="text-xs text-muted">{zone.kind} · {zone.importance}%</div>
+              <div className="text-xs text-muted">{zone.kind} · {zone.importance}% · {zone.files} files</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="rounded-panel border border-line bg-white p-3">
+        <h2 className="mb-3 text-sm font-bold">Can Ignore First</h2>
+        <div className="grid gap-2">
+          {profile.ignoreGuidance.length ? profile.ignoreGuidance.slice(0, 5).map((item) => (
+            <div key={item.path} className="architecture-card opacity-70">
+              <div className="font-bold">{item.path}</div>
+              <div className="text-xs text-muted">{item.reason}</div>
+            </div>
+          )) : <p className="text-sm text-muted">No obvious support-only areas.</p>}
         </div>
       </section>
     </aside>
