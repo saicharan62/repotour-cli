@@ -1,14 +1,20 @@
 import type { Analyzer, RepoContext, RepoProfile } from "../types.js";
+import { architectureGraphAnalyzer } from "./architecture-graph.js";
 import { architectureAnalyzer } from "./architecture.js";
 import { churnAnalyzer } from "./churn.js";
 import { entrypointsAnalyzer } from "./entrypoints.js";
 import { entrypointScoringAnalyzer } from "./entrypoint-scoring.js";
+import { executionFlowAnalyzer } from "./execution-flow.js";
 import { importanceAnalyzer } from "./importance.js";
 import { createImportsAnalyzer } from "./imports.js";
 import { languageAnalyzer } from "./language.js";
 import { manifestAnalyzer } from "./manifest.js";
+import { ignoreGuidanceAnalyzer } from "./noise.js";
+import { packageMapAnalyzer } from "./package-map.js";
 import { readingPathAnalyzer } from "./reading-path.js";
 import { readmeAnalyzer } from "./readme.js";
+import { timelineAnalyzer } from "./timeline.js";
+import { zoneRelationshipsAnalyzer } from "./zone-relationships.js";
 import { zonesAnalyzer } from "./zones.js";
 
 export function createAnalyzerPipeline(options: { maxImportFiles?: number } = {}): Analyzer[] {
@@ -19,11 +25,17 @@ export function createAnalyzerPipeline(options: { maxImportFiles?: number } = {}
     createImportsAnalyzer(options.maxImportFiles),
     churnAnalyzer,
     entrypointScoringAnalyzer,
+    executionFlowAnalyzer,
     readmeAnalyzer,
     zonesAnalyzer,
+    zoneRelationshipsAnalyzer,
+    packageMapAnalyzer,
+    timelineAnalyzer,
+    ignoreGuidanceAnalyzer,
     architectureAnalyzer,
     importanceAnalyzer,
     readingPathAnalyzer,
+    architectureGraphAnalyzer,
     architectureSummaryAnalyzer,
   ];
 }
