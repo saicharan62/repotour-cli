@@ -5,7 +5,7 @@ import { Command } from "commander";
 import { createAnalyzerPipeline, runAnalyzers } from "./analyzers/index.js";
 import { createEmptyProfile, createRepoContext } from "./profile.js";
 import { renderHtml, renderMarkdown } from "./renderers/index.js";
-import type { CliOptions, OutputFormat } from "./types.js";
+import type { CliOptions, OutputFormat, RepoProfile } from "./types.js";
 import { walkRepository } from "./walker/index.js";
 
 const program = new Command();
@@ -16,6 +16,11 @@ program
   .argument("[repo]", "repository path", ".")
   .option("--html", "render standalone HTML")
   .option("--markdown", "render markdown")
+  .option("--interactive", "render interactive standalone HTML")
+  .option("--graph", "emit architecture graph JSON")
+  .option("--flow", "emit execution flow JSON")
+  .option("--focus <query>", "focus graph/flow output around a path, zone kind, or node label")
+  .option("--ignore-low-signal", "suppress low-priority graph nodes in graph JSON output")
   .option("-o, --output <file>", "write output to a file")
   .option("--max-import-files <count>", "maximum source files to sample for shallow imports", "80")
   .action(async (repo: string, options: CliOptions) => {
@@ -32,7 +37,8 @@ program
         context,
         createAnalyzerPipeline({ maxImportFiles: Number(options.maxImportFiles ?? 80) }),
       );
-      const output = format === "html" ? renderHtml(profile) : renderMarkdown(profile);
+      const focusedProfile = applyFocus(profile, options);
+      const output = chooseOutput(focusedProfile, options, format);
 
       if (options.output) {
         await fs.writeFile(path.resolve(options.output), output, "utf8");
@@ -51,8 +57,37 @@ program
 program.parse();
 
 function chooseFormat(options: CliOptions): OutputFormat {
-  if (options.html) return "html";
+  if (options.html || options.interactive) return "html";
   if (options.markdown) return "markdown";
   if (options.output?.toLowerCase().endsWith(".html")) return "html";
   return "markdown";
+}
+
+function chooseOutput(profile: RepoProfile, options: CliOptions, format: OutputFormat): string {
+  if (options.graph) return `${JSON.stringify(profile.architectureGraph, null, 2)}\n`;
+  if (options.flow) return `${JSON.stringify(profile.executionFlows, null, 2)}\n`;
+  return format === "html" ? renderHtml(profile) : renderMarkdown(profile);
+}
+
+function applyFocus(profile: RepoProfile, options: CliOptions): RepoProfile {
+  const query = options.focus?.toLowerCase();
+  if (!query && !options.ignoreLowSignal) return profile;
+  const graphNodes = profile.architectureGraph.nodes.filter((node) => {
+    const matchesFocus = !query || node.path.toLowerCase().includes(query) || node.label.toLowerCase().includes(query) || node.kind.toLowerCase().includes(query) || node.role.toLowerCase().includes(query);
+    const matchesSignal = !options.ignoreLowSignal || !node.lowSignal;
+    return matchesFocus && matchesSignal;
+  });
+  const ids = new Set(graphNodes.map((node) => node.id));
+  return {
+    ...profile,
+    architectureGraph: {
+      nodes: graphNodes,
+      edges: profile.architectureGraph.edges.filter((edge) => ids.has(edge.from) && ids.has(edge.to)),
+    },
+    executionFlows: query
+      ? profile.executionFlows
+        .map((flow) => ({ ...flow, steps: flow.steps.filter((step) => step.path.toLowerCase().includes(query) || step.role.toLowerCase().includes(query)) }))
+        .filter((flow) => flow.entrypoint.toLowerCase().includes(query) || flow.steps.length)
+      : profile.executionFlows,
+  };
 }
