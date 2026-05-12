@@ -15,6 +15,12 @@ export type RepoProfile = {
   importantFiles: ImportantFile[];
   repoZones: RepoZone[];
   readingPath: ReadingPathItem[];
+  architectureGraph: ArchitectureGraph;
+  executionFlows: ExecutionFlow[];
+  zoneRelationships: ZoneRelationship[];
+  packageMap: PackageBoundary[];
+  timelineSignals: TimelineSignal[];
+  ignoreGuidance: IgnoreGuidance[];
   architectureStyle?: ArchitectureStyle;
   architectureSummary?: string;
   warnings: ProfileWarning[];
@@ -175,6 +181,77 @@ export type ArchitectureStyle = {
   signals: ScoreSignal[];
 };
 
+export type ArchitectureGraph = {
+  nodes: ArchitectureGraphNode[];
+  edges: ArchitectureGraphEdge[];
+};
+
+export type ArchitectureGraphNode = {
+  id: string;
+  label: string;
+  kind: "zone" | "entrypoint" | "module" | "package" | "manifest";
+  path: string;
+  importance: number;
+  role: string;
+  lowSignal: boolean;
+  signals: ScoreSignal[];
+};
+
+export type ArchitectureGraphEdge = {
+  id: string;
+  from: string;
+  to: string;
+  kind: "imports" | "contains" | "entrypoint" | "package-dependency" | "reads-first";
+  weight: number;
+  label: string;
+};
+
+export type ExecutionFlow = {
+  entrypoint: string;
+  confidence: "high" | "medium" | "low";
+  score: number;
+  steps: ExecutionFlowStep[];
+};
+
+export type ExecutionFlowStep = {
+  path: string;
+  role: "entrypoint" | "orchestrator" | "runtime-module" | "external-package" | "unknown";
+  reason: string;
+  depth: number;
+  signals: ScoreSignal[];
+};
+
+export type ZoneRelationship = {
+  from: string;
+  to: string;
+  kind: "depends-on" | "orchestrates" | "supports" | "tests" | "unknown";
+  weight: number;
+  evidence: string[];
+};
+
+export type PackageBoundary = {
+  path: string;
+  name: string;
+  dependencies: string[];
+  internalDependencies: string[];
+  centrality: number;
+  signals: ScoreSignal[];
+};
+
+export type TimelineSignal = {
+  path: string;
+  kind: "rapidly-evolving" | "stable" | "recently-active";
+  score: number;
+  summary: string;
+};
+
+export type IgnoreGuidance = {
+  path: string;
+  reason: string;
+  confidence: "high" | "medium" | "low";
+  signals: ScoreSignal[];
+};
+
 export type ProfileWarning = {
   source: string;
   message: string;
@@ -183,6 +260,11 @@ export type ProfileWarning = {
 export type CliOptions = {
   html?: boolean;
   markdown?: boolean;
+  interactive?: boolean;
+  graph?: boolean;
+  flow?: boolean;
+  focus?: string;
+  ignoreLowSignal?: boolean;
   output?: string;
   maxImportFiles?: string;
 };
