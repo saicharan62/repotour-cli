@@ -23,7 +23,13 @@ export async function serveProfile(profile: RepoProfile, options: ServeOptions):
     response.end("Not found");
   });
 
-  await new Promise<void>((resolve) => apiServer.listen(options.apiPort, "127.0.0.1", resolve));
+  await new Promise<void>((resolve, reject) => {
+    apiServer.once("error", reject);
+    apiServer.listen(options.apiPort, "127.0.0.1", () => {
+      apiServer.off("error", reject);
+      resolve();
+    });
+  });
 
   const frontendPath = findFrontendPath();
   const child = spawn(
