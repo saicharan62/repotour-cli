@@ -63,7 +63,7 @@ npm test
 npm run build
 ```
 
-## Current v3 Scope
+## Current v4 Scope
 
 - Weighted language detection by lines of code
 - Heuristic framework detection
