@@ -12,3 +12,114 @@ body {
 .architecture-card {
   @apply rounded-panel border border-line bg-white p-3 transition hover:border-accent;
 }
+
+.architecture-surface {
+  height: min(72vh, 760px);
+  min-height: 600px;
+  overflow: hidden;
+  border: 1px solid #d9dee8;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(15, 118, 110, .05), transparent 28%),
+    radial-gradient(circle at 78% 72%, rgba(49, 95, 155, .05), transparent 24%),
+    #fbfcfe;
+}
+
+.react-flow__edge-path {
+  stroke: #9ca7b7;
+  stroke-width: 1.8;
+}
+
+.react-flow__edge.runtime-edge .react-flow__edge-path,
+.react-flow__edge.learning-edge .react-flow__edge-path {
+  stroke: #0f766e;
+  stroke-width: 2.6;
+}
+
+.react-flow__edge.active .react-flow__edge-path {
+  filter: drop-shadow(0 0 5px rgba(15, 118, 110, .35));
+}
+
+.architecture-node {
+  width: 230px;
+  position: relative;
+  border: 1px solid #526070;
+  border-left-width: 5px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .94);
+  padding: 10px;
+  box-shadow: 0 8px 22px rgba(29, 36, 51, .08);
+  transition: transform .22s ease, opacity .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.architecture-node:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.architecture-node.selected {
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, .14), 0 16px 34px rgba(29, 36, 51, .14);
+}
+
+.architecture-node.active {
+  animation: node-pulse 1.2s ease-in-out infinite;
+}
+
+.architecture-node.past {
+  background: #f7fffd;
+}
+
+.architecture-node.muted {
+  opacity: .28;
+}
+
+.architecture-node.low-signal {
+  opacity: .42;
+}
+
+.node-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #667085;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.node-title {
+  margin-top: 5px;
+  color: #1d2433;
+  font-weight: 800;
+  word-break: break-word;
+}
+
+.node-role {
+  margin-top: 5px;
+  color: #667085;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.node-heat {
+  height: 3px;
+  margin-top: 9px;
+  border-radius: 999px;
+  opacity: .75;
+}
+
+.flow-panel {
+  border: 1px solid #d9dee8;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .92);
+  padding: 10px 12px;
+  box-shadow: 0 8px 22px rgba(29, 36, 51, .08);
+}
+
+@keyframes node-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(15, 118, 110, .08), 0 12px 28px rgba(15, 118, 110, .14);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(15, 118, 110, .16), 0 18px 36px rgba(15, 118, 110, .20);
+  }
+}
