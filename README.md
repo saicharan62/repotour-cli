@@ -14,11 +14,14 @@ It answers the practical first-pass questions:
 
 ```bash
 repotour .
+repotour . --json --output profile.json
 repotour ./repo --html --output report.html
 repotour ./repo --interactive --output map.html
 repotour ./repo --graph --focus runtime --ignore-low-signal
 repotour ./repo --flow
 repotour ./repo --markdown --output repotour.md
+repotour serve ./repo
+repotour serve facebook/react
 ```
 
 ## Architecture
@@ -27,10 +30,29 @@ The implementation is intentionally modular:
 
 - `walker/` reads repository metadata and respects `.gitignore`.
 - `analyzers/` enrich a shared `RepoProfile`.
+- `engine/` produces the canonical `RepoProfile` JSON contract.
 - `renderers/` consume `RepoProfile` and never touch the filesystem.
+- `frontend/` contains the React exploration runtime.
 - `cli.ts` handles command parsing, orchestration, and output.
 
 This keeps new analyzers cheap to add and avoids coupling presentation to repository IO.
+
+## Frontend Runtime
+
+The long-term product boundary is:
+
+```text
+analysis engine -> RepoProfile JSON -> React UI runtime
+```
+
+The local web app is launched with:
+
+```bash
+npm --prefix frontend install
+repotour serve .
+```
+
+`repotour serve` starts a local profile API and Vite-powered React explorer. Remote GitHub shorthand and URLs are cached under `~/.repotour/cache/`.
 
 ## Development
 
